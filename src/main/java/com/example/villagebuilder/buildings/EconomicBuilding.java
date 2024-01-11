@@ -1,5 +1,5 @@
 package com.example.villagebuilder.buildings;
 
-public class EconomicBuilding implements Building{
+public interface EconomicBuilding extends Building{
 
 }
