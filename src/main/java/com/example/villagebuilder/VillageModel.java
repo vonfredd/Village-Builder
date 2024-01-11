@@ -1,2 +1,4 @@
-package com.example.villagebuilder.buildings;public class VillageModel {
+package com.example.villagebuilder;
+
+public class VillageModel {
 }
