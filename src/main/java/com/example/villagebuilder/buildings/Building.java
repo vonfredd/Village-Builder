@@ -1,2 +1,5 @@
-package com.example.villagebuilder.buildings;public interface Building {
+package com.example.villagebuilder.buildings;
+
+public interface Building{
+
 }
