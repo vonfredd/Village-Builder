@@ -1,5 +1,5 @@
 package com.example.villagebuilder.buildings;
 
 public interface BuildingFactory {
-    Building createBuilding();
+    Building createBuilding(int level);
 }
