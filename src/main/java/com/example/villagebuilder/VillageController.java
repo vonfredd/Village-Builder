@@ -3,7 +3,7 @@ package com.example.villagebuilder;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
-public class HelloController {
+public class VillageController {
     @FXML
     private Label welcomeText;
 
