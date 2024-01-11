@@ -26,9 +26,14 @@ public class VillageController {
         timeline.play();
 
         Timeline timelineProduce = new Timeline(
-                new KeyFrame(Duration.seconds(1), event -> model.materialProduction())
+                //new KeyFrame(Duration.seconds(1), event -> model.materialProduction())
         );
         timelineProduce.setCycleCount(Timeline.INDEFINITE);
         timelineProduce.play();
+    }
+
+    private void updateLabel() {
+        //model.updateMaterialsCountingLabels();
+        //myListView.refresh();
     }
 }
