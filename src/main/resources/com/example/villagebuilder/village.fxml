@@ -5,11 +5,11 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane maxHeight="720" maxWidth="1280" minHeight="720" minWidth="1280" prefHeight="720" prefWidth="1280" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.villagebuilder.VillageController">
+<BorderPane maxHeight="768" maxWidth="1024" minHeight="768" minWidth="1024" prefHeight="768" prefWidth="1024" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.villagebuilder.VillageController">
    <top>
-      <Pane prefHeight="100.0" prefWidth="1280.0" BorderPane.alignment="CENTER">
+      <HBox prefHeight="100.0" prefWidth="1280.0" BorderPane.alignment="CENTER">
          <children>
-            <HBox prefHeight="100.0" prefWidth="426.66">
+            <VBox alignment="CENTER" prefHeight="150.0" prefWidth="339.0">
                <children>
                   <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
                   <Label text="Label">
@@ -17,8 +17,8 @@
                         <Font size="24.0" />
                      </font>
                   </Label>
-               </children></HBox>
-            <HBox layoutX="427.0" prefHeight="100.0" prefWidth="426.66">
+               </children></VBox>
+            <VBox alignment="CENTER" layoutX="342.0" prefHeight="150.0" prefWidth="339.0">
                <children>
                   <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
                   <Label text="Label">
@@ -26,8 +26,8 @@
                         <Font size="24.0" />
                      </font>
                   </Label>
-               </children></HBox>
-            <HBox layoutX="854.0" prefHeight="100.0" prefWidth="426.66">
+               </children></VBox>
+            <VBox alignment="CENTER" layoutX="683.0" prefHeight="150.0" prefWidth="341.0">
                <children>
                   <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
                   <Label text="Label">
@@ -36,8 +36,8 @@
                      </font>
                   </Label>
                </children>
-            </HBox>
+            </VBox>
          </children>
-      </Pane>
+      </HBox>
    </top>
 </BorderPane>
