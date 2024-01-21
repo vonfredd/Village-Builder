@@ -21,6 +21,10 @@ public class ResourceProduction {
         setWheatAmount(getWheatAmount()+1);
     }
 
+    private void buildingProduction(){
+        buildings.forEach((e)-> e.produceResource());
+    }
+
     public int getLumberAmount() {
         return lumberAmount.get();
     }
