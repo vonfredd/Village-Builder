@@ -15,6 +15,7 @@ public class VillageController {
     @FXML
     private Label wheatLabel;
     private ResourceProduction resourceProduction;
+    private VillageModel model = new VillageModel();
 
     public void initialize() {
         startingTheTimeline();
@@ -35,7 +36,7 @@ public class VillageController {
 
         Timeline timelineProduce = new Timeline(
                 new KeyFrame(Duration.seconds(1), event -> {
-                    resourceProduction.baseProduction();
+                    model.callForProduction(resourceProduction);
                 })
         );
         timelineProduce.setCycleCount(Timeline.INDEFINITE);
