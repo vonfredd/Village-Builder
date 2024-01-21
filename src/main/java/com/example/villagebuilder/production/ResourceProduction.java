@@ -1,6 +1,8 @@
 package com.example.villagebuilder.production;
 
 import com.example.villagebuilder.buildings.Building;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.value.ObservableIntegerValue;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 
@@ -9,15 +11,59 @@ import java.util.List;
 public class ResourceProduction {
 
     //lumber brick wheat
-    private int lumberAmount;
-    private int brickAmount;
-    private int wheatAmount;
+    private final SimpleIntegerProperty lumberAmount = new SimpleIntegerProperty();
+    private final SimpleIntegerProperty  brickAmount = new SimpleIntegerProperty();
+    private final SimpleIntegerProperty  wheatAmount = new SimpleIntegerProperty();
 
     private List <Building> buildings = FXCollections.observableArrayList();
 
     public void baseProduction(){
-        lumberAmount += 1;
-        brickAmount += 1;
-        wheatAmount += 1;
+        setLumberAmount(getLumberAmount()+1);
+        setBrickAmount(getBrickAmount()+1);
+        setWheatAmount(getWheatAmount()+1);
+    }
+
+    public int getLumberAmount() {
+        return lumberAmount.get();
+    }
+
+    public SimpleIntegerProperty lumberAmountProperty() {
+        return lumberAmount;
+    }
+
+    public void setLumberAmount(int lumberAmount) {
+        this.lumberAmount.set(lumberAmount);
+    }
+
+    public int getBrickAmount() {
+        return brickAmount.get();
+    }
+
+    public SimpleIntegerProperty brickAmountProperty() {
+        return brickAmount;
+    }
+
+    public void setBrickAmount(int brickAmount) {
+        this.brickAmount.set(brickAmount);
+    }
+
+    public int getWheatAmount() {
+        return wheatAmount.get();
+    }
+
+    public SimpleIntegerProperty wheatAmountProperty() {
+        return wheatAmount;
+    }
+
+    public void setWheatAmount(int wheatAmount) {
+        this.wheatAmount.set(wheatAmount);
+    }
+
+    public List<Building> getBuildings() {
+        return buildings;
+    }
+
+    public void setBuildings(List<Building> buildings) {
+        this.buildings = buildings;
     }
 }
