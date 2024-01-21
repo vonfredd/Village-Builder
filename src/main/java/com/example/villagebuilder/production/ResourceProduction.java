@@ -16,6 +16,7 @@ public class ResourceProduction {
     private List <Building> buildings = FXCollections.observableArrayList();
 
     public void baseProduction(){
+        buildingResourceProduction();
         setLumberAmount(getLumberAmount()+1);
         setBrickAmount(getBrickAmount()+1);
         setWheatAmount(getWheatAmount()+1);
