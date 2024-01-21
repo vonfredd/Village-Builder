@@ -38,8 +38,4 @@ public class VillageController {
         timelineProduce.play();
     }
 
-    private void updateLabel() {
-        //model.updateMaterialsCountingLabels();
-        //myListView.refresh();
-    }
 }
