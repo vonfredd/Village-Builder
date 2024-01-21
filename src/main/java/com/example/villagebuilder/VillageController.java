@@ -26,13 +26,13 @@ public class VillageController {
 
     private void startingTheTimeline() {
         Timeline timeline = new Timeline(
-                new KeyFrame(Duration.millis(100), event -> resourceProduction.baseProduction())
+                new KeyFrame(Duration.millis(100))
         );
         timeline.setCycleCount(Timeline.INDEFINITE);
         timeline.play();
 
         Timeline timelineProduce = new Timeline(
-                //new KeyFrame(Duration.seconds(1), event -> model.materialProduction())
+                new KeyFrame(Duration.seconds(1), event -> resourceProduction.baseProduction())
         );
         timelineProduce.setCycleCount(Timeline.INDEFINITE);
         timelineProduce.play();
