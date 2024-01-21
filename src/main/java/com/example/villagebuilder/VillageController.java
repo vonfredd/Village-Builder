@@ -1,5 +1,6 @@
 package com.example.villagebuilder;
 
+import com.example.villagebuilder.production.ResourceProduction;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
@@ -9,6 +10,8 @@ import javafx.util.Duration;
 public class VillageController {
     @FXML
     private Label welcomeText;
+
+    private ResourceProduction resourceProduction = new ResourceProduction();
 
     public void initialize() {
         startingTheTimeline();
@@ -21,7 +24,7 @@ public class VillageController {
 
     private void startingTheTimeline() {
         Timeline timeline = new Timeline(
-                new KeyFrame(Duration.millis(100), event -> updateLabel())
+                new KeyFrame(Duration.millis(100), event -> resourceProduction.baseProduction())
         );
         timeline.setCycleCount(Timeline.INDEFINITE);
         timeline.play();
