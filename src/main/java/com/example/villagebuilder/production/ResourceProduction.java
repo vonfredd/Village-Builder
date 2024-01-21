@@ -2,7 +2,6 @@ package com.example.villagebuilder.production;
 
 import com.example.villagebuilder.buildings.Building;
 import javafx.beans.property.SimpleIntegerProperty;
-import javafx.collections.FXCollections;
 
 import java.util.List;
 
@@ -13,17 +12,15 @@ public class ResourceProduction {
     private final SimpleIntegerProperty  brickAmount = new SimpleIntegerProperty();
     private final SimpleIntegerProperty  wheatAmount = new SimpleIntegerProperty();
 
-    private List <Building> buildings = FXCollections.observableArrayList();
-
-    public void baseProduction(){
-        buildingResourceProduction();
+    public void baseProduction(List<Building> buildingList){
+        buildingResourceProduction(buildingList);
         setLumberAmount(getLumberAmount()+1);
         setBrickAmount(getBrickAmount()+1);
         setWheatAmount(getWheatAmount()+1);
     }
 
-    private void buildingResourceProduction(){
-        buildings.forEach((e)-> e.produceResource());
+    private void buildingResourceProduction(List<Building> buildingList){
+        buildingList.forEach((e)-> e.produceResource());
     }
 
     public int getLumberAmount() {
@@ -62,11 +59,4 @@ public class ResourceProduction {
         this.wheatAmount.set(wheatAmount);
     }
 
-    public List<Building> getBuildings() {
-        return buildings;
-    }
-
-    public void setBuildings(List<Building> buildings) {
-        this.buildings = buildings;
-    }
 }
