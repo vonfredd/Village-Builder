@@ -14,6 +14,11 @@ public class Farm implements EconomicBuilding {
     }
 
     @Override
+    public String getType() {
+        return type;
+    }
+
+    @Override
     public void setLevel(int level) {
         this.level = level;
     }
@@ -21,4 +26,5 @@ public class Farm implements EconomicBuilding {
     public int getLevel() {
         return level;
     }
+
 }

@@ -17,7 +17,14 @@ public class Masonry implements EconomicBuilding {
     public int produceResource() {
         return getLevel();
     }
+
+    @Override
+    public String getType() {
+        return type;
+    }
+
     public int getLevel() {
         return level;
     }
+
 }

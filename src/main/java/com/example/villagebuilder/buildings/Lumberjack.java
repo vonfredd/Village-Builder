@@ -5,7 +5,7 @@ public class Lumberjack implements EconomicBuilding {
     private String type;
 
     public Lumberjack() {
-        this.type = "Lumberjack";
+        this.type = "LUMBERJACK";
     }
 
     @Override
@@ -18,7 +18,13 @@ public class Lumberjack implements EconomicBuilding {
         return getLevel();
     }
 
+    @Override
+    public String getType() {
+        return type;
+    }
+
     public int getLevel() {
         return level;
     }
+
 }
