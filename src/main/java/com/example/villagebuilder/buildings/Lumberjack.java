@@ -5,7 +5,7 @@ public class Lumberjack implements EconomicBuilding {
     private String type;
 
     public Lumberjack() {
-        this.type = "Lumberjack";
+        this.type = "LUMBERJACK";
     }
 
     @Override
@@ -14,7 +14,17 @@ public class Lumberjack implements EconomicBuilding {
     }
 
     @Override
-    public void produceResource() {
-        System.out.println("Lumberjack is producing lumber.");
+    public int produceResource() {
+        return getLevel();
     }
+
+    @Override
+    public String getType() {
+        return type;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
 }

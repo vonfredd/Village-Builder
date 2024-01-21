@@ -15,7 +15,7 @@
                   <ImageView fitHeight="50.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" >
                      <Image url="@images/lumber.png"/>
                   </ImageView>
-                  <Label text="LUMBER">
+                  <Label fx:id="lumberLabel" text="LUMBER">
                      <font>
                         <Font size="24.0" />
                      </font>
@@ -26,7 +26,7 @@
                   <ImageView fitHeight="50.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" >
                      <Image url="@images/bricks.png"/>
                   </ImageView>
-                  <Label text="BRICK">
+                  <Label fx:id="brickLabel" text="BRICK">
                      <font>
                         <Font size="24.0" />
                      </font>
@@ -37,7 +37,7 @@
                   <ImageView fitHeight="50.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" >
                      <Image url="@images/wheat.png"/>
                   </ImageView>
-                  <Label text="WHEAT">
+                  <Label fx:id="wheatLabel" text="WHEAT">
                      <font>
                         <Font size="24.0" />
                      </font>

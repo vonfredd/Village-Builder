@@ -9,12 +9,22 @@ public class Farm implements EconomicBuilding {
     }
 
     @Override
-    public void produceResource() {
-        System.out.println("Farm is producing wheat.");
+    public int produceResource() {
+        return getLevel();
+    }
+
+    @Override
+    public String getType() {
+        return type;
     }
 
     @Override
     public void setLevel(int level) {
         this.level = level;
     }
+
+    public int getLevel() {
+        return level;
+    }
+
 }
