@@ -9,18 +9,26 @@ public class ResourceProduction {
 
     // Connect resource amount with fxml labels
     private final SimpleIntegerProperty lumberAmount = new SimpleIntegerProperty();
-    private final SimpleIntegerProperty  brickAmount = new SimpleIntegerProperty();
-    private final SimpleIntegerProperty  wheatAmount = new SimpleIntegerProperty();
+    private final SimpleIntegerProperty brickAmount = new SimpleIntegerProperty();
+    private final SimpleIntegerProperty wheatAmount = new SimpleIntegerProperty();
 
-    public void baseProduction(List<Building> buildingList){
-        buildingResourceProduction(buildingList);
-        setLumberAmount(getLumberAmount()+1);
-        setBrickAmount(getBrickAmount()+1);
-        setWheatAmount(getWheatAmount()+1);
+    public void baseProduction() {
+        setLumberAmount(getLumberAmount() + 1);
+        setBrickAmount(getBrickAmount() + 1);
+        setWheatAmount(getWheatAmount() + 1);
     }
 
-    private void buildingResourceProduction(List<Building> buildingList){
-        buildingList.forEach((e)-> e.produceResource());
+    public void buildingResourceProduction(List<Building> buildingList) {
+        buildingList.forEach((e) -> {
+            System.out.println(e.toString());
+                    switch (e.getType()) {
+                        case "FARM" -> setWheatAmount(getWheatAmount() + e.produceResource() + 1);
+                        case "LUMBERJACK" -> setLumberAmount(getLumberAmount() + e.produceResource() + 1);
+                        case "MASONRY" -> setBrickAmount(getBrickAmount() + getBrickAmount() + 1);
+                        default -> baseProduction();
+                    }
+                }
+        );
     }
 
     public int getLumberAmount() {
