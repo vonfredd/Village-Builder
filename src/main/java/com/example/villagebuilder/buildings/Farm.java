@@ -10,7 +10,7 @@ public class Farm implements EconomicBuilding {
 
     @Override
     public int produceResource() {
-        return
+        return getLevel();
     }
 
     @Override
