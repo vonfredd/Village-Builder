@@ -7,12 +7,12 @@
 
 <BorderPane maxHeight="768" maxWidth="1024" minHeight="768" minWidth="1024" prefHeight="768" prefWidth="1024" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.villagebuilder.VillageController">
    <top>
-      <HBox prefHeight="100.0" prefWidth="1280.0" BorderPane.alignment="CENTER">
+      <HBox prefHeight="140.0" prefWidth="1024.0" BorderPane.alignment="CENTER">
          <children>
             <VBox alignment="CENTER" prefHeight="150.0" prefWidth="339.0">
                <children>
                   <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
-                  <Label text="Label">
+                  <Label text="LUMBER">
                      <font>
                         <Font size="24.0" />
                      </font>
@@ -21,7 +21,7 @@
             <VBox alignment="CENTER" layoutX="342.0" prefHeight="150.0" prefWidth="339.0">
                <children>
                   <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
-                  <Label text="Label">
+                  <Label text="BRICK">
                      <font>
                         <Font size="24.0" />
                      </font>
@@ -30,7 +30,7 @@
             <VBox alignment="CENTER" layoutX="683.0" prefHeight="150.0" prefWidth="341.0">
                <children>
                   <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
-                  <Label text="Label">
+                  <Label text="WHEAT">
                      <font>
                         <Font size="24.0" />
                      </font>
