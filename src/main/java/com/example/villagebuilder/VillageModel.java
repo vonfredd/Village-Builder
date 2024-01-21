@@ -10,13 +10,11 @@ public class VillageModel {
 
     private List<Building> buildings = FXCollections.observableArrayList();
 
-    public void constructBuilding(){
+    public void constructBuilding() {
         //Add some code to add a building and make ResourceProduction builings list also see all buildings.
-
     }
 
-    public void callForProduction(ResourceProduction resourceProduction){
-        resourceProduction.baseProduction(buildings);
+    public void callForProduction(ResourceProduction resourceProduction) {
+        resourceProduction.buildingResourceProduction(buildings);
     }
-
 }
