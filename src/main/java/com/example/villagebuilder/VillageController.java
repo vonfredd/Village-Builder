@@ -9,17 +9,19 @@ import javafx.util.Duration;
 
 public class VillageController {
     @FXML
-    private Label welcomeText;
-
-    private ResourceProduction resourceProduction = new ResourceProduction();
+    private Label brickLabel;
+    @FXML
+    private Label lumberLabel;
+    @FXML
+    private Label wheatLabel;
+    private final ResourceProduction resourceProduction = new ResourceProduction();
 
     public void initialize() {
         startingTheTimeline();
-    }
+        brickLabel.textProperty().bind(resourceProduction.brickAmountProperty().asString());
+        lumberLabel.textProperty().bind(resourceProduction.lumberAmountProperty().asString());
+        wheatLabel.textProperty().bind(resourceProduction.wheatAmountProperty().asString());
 
-    @FXML
-    protected void onHelloButtonClick() {
-        welcomeText.setText("Welcome to JavaFX Application!");
     }
 
     private void startingTheTimeline() {
