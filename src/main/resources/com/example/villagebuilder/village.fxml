@@ -11,7 +11,9 @@
          <children>
             <VBox alignment="CENTER" prefHeight="150.0" prefWidth="339.0">
                <children>
-                  <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fitHeight="50.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" >
+                     <Image url="@images/lumber.png"/>
+                  </ImageView>
                   <Label text="LUMBER">
                      <font>
                         <Font size="24.0" />
@@ -20,7 +22,9 @@
                </children></VBox>
             <VBox alignment="CENTER" layoutX="342.0" prefHeight="150.0" prefWidth="339.0">
                <children>
-                  <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fitHeight="50.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" >
+                     <Image url="@images/bricks.png"/>
+                  </ImageView>
                   <Label text="BRICK">
                      <font>
                         <Font size="24.0" />
@@ -29,7 +33,9 @@
                </children></VBox>
             <VBox alignment="CENTER" layoutX="683.0" prefHeight="150.0" prefWidth="341.0">
                <children>
-                  <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fitHeight="50.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" >
+                     <Image url="@images/wheat.png"/>
+                  </ImageView>
                   <Label text="WHEAT">
                      <font>
                         <Font size="24.0" />
