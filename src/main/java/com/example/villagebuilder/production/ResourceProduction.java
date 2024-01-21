@@ -2,15 +2,13 @@ package com.example.villagebuilder.production;
 
 import com.example.villagebuilder.buildings.Building;
 import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.value.ObservableIntegerValue;
 import javafx.collections.FXCollections;
-import javafx.fxml.FXML;
 
 import java.util.List;
 
 public class ResourceProduction {
 
-    //lumber brick wheat
+    // Connect resource amount with fxml labels
     private final SimpleIntegerProperty lumberAmount = new SimpleIntegerProperty();
     private final SimpleIntegerProperty  brickAmount = new SimpleIntegerProperty();
     private final SimpleIntegerProperty  wheatAmount = new SimpleIntegerProperty();
