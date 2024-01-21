@@ -14,7 +14,11 @@ public class Lumberjack implements EconomicBuilding {
     }
 
     @Override
-    public void produceResource() {
-        System.out.println("Lumberjack is producing lumber.");
+    public int produceResource() {
+        return getLevel();
+    }
+
+    public int getLevel() {
+        return level;
     }
 }

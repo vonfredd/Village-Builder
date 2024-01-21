@@ -14,7 +14,10 @@ public class Masonry implements EconomicBuilding {
     }
 
     @Override
-    public void produceResource() {
-        System.out.println("Masonry is producing bricks.");
+    public int produceResource() {
+        return getLevel();
+    }
+    public int getLevel() {
+        return level;
     }
 }

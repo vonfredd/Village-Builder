@@ -1,7 +1,7 @@
 package com.example.villagebuilder.buildings;
 
 public class Farm implements EconomicBuilding {
-    private int level = 1;
+    private int level;
     private final String type;
 
     public Farm() {
@@ -9,12 +9,16 @@ public class Farm implements EconomicBuilding {
     }
 
     @Override
-    public void produceResource() {
-        System.out.println("Farm is producing wheat.");
+    public int produceResource() {
+        return
     }
 
     @Override
     public void setLevel(int level) {
         this.level = level;
+    }
+
+    public int getLevel() {
+        return level;
     }
 }
