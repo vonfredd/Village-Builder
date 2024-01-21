@@ -23,6 +23,7 @@ public class VillageController {
         lumberLabel.textProperty().bind(resourceProduction.lumberAmountProperty().asString());
         wheatLabel.textProperty().bind(resourceProduction.wheatAmountProperty().asString());
 
+
     }
 
     private void startingTheTimeline() {
@@ -33,7 +34,9 @@ public class VillageController {
         timeline.play();
 
         Timeline timelineProduce = new Timeline(
-                new KeyFrame(Duration.seconds(1), event -> resourceProduction.baseProduction())
+                new KeyFrame(Duration.seconds(1), event -> {
+                    resourceProduction.baseProduction();
+                })
         );
         timelineProduce.setCycleCount(Timeline.INDEFINITE);
         timelineProduce.play();
