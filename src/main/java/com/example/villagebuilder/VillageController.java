@@ -18,6 +18,7 @@ public class VillageController {
     protected void onHelloButtonClick() {
         welcomeText.setText("Welcome to JavaFX Application!");
     }
+
     private void startingTheTimeline() {
         Timeline timeline = new Timeline(
                 new KeyFrame(Duration.millis(100), event -> updateLabel())

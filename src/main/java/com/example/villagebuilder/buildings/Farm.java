@@ -1,7 +1,7 @@
 package com.example.villagebuilder.buildings;
 
 public class Farm implements EconomicBuilding {
-    private int level;
+    private int level = 1;
     private final String type;
 
     public Farm() {
