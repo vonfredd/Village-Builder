@@ -8,10 +8,16 @@ import java.util.List;
 
 public class VillageModel {
 
+    Builder builder = new Builder();
+
     private List<Building> buildings = FXCollections.observableArrayList();
 
-    public void constructBuilding() {
-        //Add some code to add a building and make ResourceProduction builings list also see all buildings.
+    public void constructBuilding(String type) {
+        switch (type) {
+            case "FARM" -> buildings.add(builder.constructFarm());
+            case "LUMBERJACK" -> buildings.add(builder.constructLumberjack());
+            case "MASONRY" -> buildings.add(builder.constructMasonry());
+        }
     }
 
     public void callForProduction(ResourceProduction resourceProduction) {
