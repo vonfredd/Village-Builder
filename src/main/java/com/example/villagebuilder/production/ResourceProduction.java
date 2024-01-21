@@ -21,7 +21,7 @@ public class ResourceProduction {
         setWheatAmount(getWheatAmount()+1);
     }
 
-    private void buildingProduction(){
+    private void buildingResourceProduction(){
         buildings.forEach((e)-> e.produceResource());
     }
 

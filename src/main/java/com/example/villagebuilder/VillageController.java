@@ -14,10 +14,11 @@ public class VillageController {
     private Label lumberLabel;
     @FXML
     private Label wheatLabel;
-    private final ResourceProduction resourceProduction = new ResourceProduction();
+    private ResourceProduction resourceProduction;
 
     public void initialize() {
         startingTheTimeline();
+        resourceProduction = new ResourceProduction();
         brickLabel.textProperty().bind(resourceProduction.brickAmountProperty().asString());
         lumberLabel.textProperty().bind(resourceProduction.lumberAmountProperty().asString());
         wheatLabel.textProperty().bind(resourceProduction.wheatAmountProperty().asString());
