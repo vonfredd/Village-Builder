@@ -23,8 +23,6 @@ public class VillageController {
         brickLabel.textProperty().bind(resourceProduction.brickAmountProperty().asString());
         lumberLabel.textProperty().bind(resourceProduction.lumberAmountProperty().asString());
         wheatLabel.textProperty().bind(resourceProduction.wheatAmountProperty().asString());
-
-
     }
 
     private void startingTheTimeline() {
