@@ -19,8 +19,9 @@ public class ResourceProduction {
     }
 
     public void buildingResourceProduction(List<Building> buildingList) {
+        if (buildingList.isEmpty())
+            baseProduction();
         buildingList.forEach((e) -> {
-            System.out.println(e.toString());
                     switch (e.getType()) {
                         case "FARM" -> setWheatAmount(getWheatAmount() + e.produceResource() + 1);
                         case "LUMBERJACK" -> setLumberAmount(getLumberAmount() + e.produceResource() + 1);
