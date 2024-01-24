@@ -54,8 +54,8 @@ public class VillageController {
     private List<Circle> constructionSites;
 
     public void initialize() {
-        startingTheTimeline();
         resourceProduction = new ResourceProduction();
+        startingTheTimeline();
         constructionSites = Arrays.asList(siteOne,siteTwo,siteThree,siteFour,siteFive,siteSix,siteSeven);
         brickLabel.textProperty().bind(resourceProduction.brickAmountProperty().asString());
         lumberLabel.textProperty().bind(resourceProduction.lumberAmountProperty().asString());
