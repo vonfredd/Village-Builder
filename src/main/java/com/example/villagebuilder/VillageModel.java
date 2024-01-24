@@ -10,7 +10,7 @@ public class VillageModel {
 
     Builder builder = new Builder();
 
-    private List<Building> buildings = FXCollections.observableArrayList();
+    private final List<Building> buildings = FXCollections.observableArrayList();
 
     public void constructBuilding(String type) {
         switch (type) {

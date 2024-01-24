@@ -55,38 +55,38 @@
             <Image url="@images/village.png" />
          </ImageView>
 
-         <Circle fx:id="siteOne" centerX="100.0" centerY="100.0" fill="#cdaf78" radius="33.0" styleClass="buildSiteCircle" translateX="-112.0" translateY="-20.0" />
+         <Circle fx:id="siteOne" onMouseClicked="#constructionSite" centerX="100.0" centerY="100.0" fill="#cdaf78" radius="33.0" styleClass="buildSiteCircle" translateX="-112.0" translateY="-20.0" />
          <ImageView fx:id="siteOneImage" visible="false">
             <!-- Set image properties here -->
          </ImageView>
 
-         <Circle fx:id="siteTwo" centerX="100.0" centerY="100.0" fill="#cdaf78" radius="33.0" styleClass="buildSiteCircle" translateX="-50.0" translateY="-100.0" />
+         <Circle fx:id="siteTwo" onMouseClicked="#constructionSite" centerX="100.0" centerY="100.0" fill="#cdaf78" radius="33.0" styleClass="buildSiteCircle" translateX="-50.0" translateY="-100.0" />
          <ImageView fx:id="siteTwoImage" visible="false">
             <!-- Set image properties here -->
          </ImageView>
 
-         <Circle fx:id="siteThree" centerX="100.0" centerY="100.0" fill="#cdaf78" radius="33.0" styleClass="buildSiteCircle" translateX="150.0" translateY="-113.0" />
+         <Circle fx:id="siteThree" onMouseClicked="#constructionSite" centerX="100.0" centerY="100.0" fill="#cdaf78" radius="33.0" styleClass="buildSiteCircle" translateX="150.0" translateY="-113.0" />
          <ImageView fx:id="siteThreeImage" visible="false">
             <fitWidth>50.0</fitWidth>
             <fitHeight>50.0</fitHeight>
             <preserveRatio>true</preserveRatio>
          </ImageView>
 
-         <Circle fx:id="siteFour" centerX="100.0" centerY="100.0" fill="#cdaf78" radius="33.0" styleClass="buildSiteCircle" translateX="150.0" translateY="90.0" />
+         <Circle fx:id="siteFour" onMouseClicked="#constructionSite" centerX="100.0" centerY="100.0" fill="#cdaf78" radius="33.0" styleClass="buildSiteCircle" translateX="150.0" translateY="90.0" />
          <ImageView fx:id="siteFourImage" visible="false">
             <!-- Set image properties here -->
          </ImageView>
 
-         <Circle fx:id="siteFive" centerX="100.0" centerY="100.0" fill="#cdaf78" radius="35.0" styleClass="buildSiteCircle" translateX="20.0" translateY="95.0" />
+         <Circle fx:id="siteFive" onMouseClicked="#constructionSite" centerX="100.0" centerY="100.0" fill="#cdaf78" radius="35.0" styleClass="buildSiteCircle" translateX="20.0" translateY="95.0" />
          <ImageView fx:id="siteFiveImage" visible="false">
             <!-- Set image properties here -->
          </ImageView>
 
-         <Circle fx:id="siteSeven" centerX="100.0" centerY="100.0" fill="#cdaf78" radius="33.0" styleClass="buildSiteCircle" translateX="150.0" />
+         <Circle fx:id="siteSeven" onMouseClicked="#constructionSite" centerX="100.0" centerY="100.0" fill="#cdaf78" radius="33.0" styleClass="buildSiteCircle" translateX="150.0" />
          <ImageView fx:id="siteSevenImage" visible="false">
             <!-- Set image properties here -->
          </ImageView>
-         <Circle fx:id="siteSix" centerX="100.0" centerY="100.0" fill="#cdaf78" radius="34.0" styleClass="buildSiteCircle" translateX="-123.0" translateY="95.0" />
+         <Circle fx:id="siteSix" onMouseClicked="#constructionSite" centerX="100.0" centerY="100.0" fill="#cdaf78" radius="34.0" styleClass="buildSiteCircle" translateX="-123.0" translateY="95.0" />
          <ImageView fx:id="siteSixImage" visible="false">
             <!-- Set image properties here -->
          </ImageView>

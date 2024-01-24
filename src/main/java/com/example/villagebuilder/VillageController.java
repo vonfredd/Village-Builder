@@ -5,6 +5,7 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import javafx.util.Duration;
 
 public class VillageController {
@@ -41,4 +42,7 @@ public class VillageController {
         timelineProduce.play();
     }
 
+
+    public void constructionSite(MouseEvent mouseEvent) {
+    }
 }
