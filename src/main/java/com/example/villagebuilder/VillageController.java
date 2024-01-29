@@ -1,6 +1,7 @@
 package com.example.villagebuilder;
 
 import com.example.villagebuilder.production.ResourceProduction;
+import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
@@ -29,15 +30,13 @@ public class VillageController {
         Timeline timeline = new Timeline(
                 new KeyFrame(Duration.millis(100))
         );
-        timeline.setCycleCount(Timeline.INDEFINITE);
+        timeline.setCycleCount(Animation.INDEFINITE);
         timeline.play();
 
         Timeline timelineProduce = new Timeline(
-                new KeyFrame(Duration.seconds(1), event -> {
-                    model.callForProduction(resourceProduction);
-                })
+                new KeyFrame(Duration.seconds(1), event -> model.callForProduction(resourceProduction))
         );
-        timelineProduce.setCycleCount(Timeline.INDEFINITE);
+        timelineProduce.setCycleCount(Animation.INDEFINITE);
         timelineProduce.play();
     }
 
