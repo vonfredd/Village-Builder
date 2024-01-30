@@ -51,7 +51,7 @@ public class VillageController {
     @FXML
     private Label wheatLabel;
     private ResourceProduction resourceProduction;
-    private VillageModel model = new VillageModel();
+    private final VillageModel model = new VillageModel();
     private List<Circle> constructionSites;
 
     public void initialize() {
@@ -89,7 +89,6 @@ public class VillageController {
             case "siteSix" -> System.out.println(6);
             case "siteSeven" -> System.out.println(7);
         }
-
     }
 
 
