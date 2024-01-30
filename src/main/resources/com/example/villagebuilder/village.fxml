@@ -126,14 +126,10 @@
                     <children>
                         <Pane style="-fx-background-color: lightGrey;">
                             <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
-                                <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true">
+                                <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true">
                                     <Image url="@images/farmHouse.png"/>
                                 </ImageView>
-                                <Label styleClass="buildingIconView" text="Farm">
-                                    <font>
-                                        <Font name="System Bold" size="19.0"/>
-                                    </font>
-                                </Label>
+                                <Label styleClass="buildingCost" text="Farm"/>
                                 <Label fx:id="farmLogsPrice" styleClass="buildingCost" text="Logs: 90"/>
                                 <Label fx:id="farmFoodPrice" styleClass="buildingCost" text="Food: 20"/>
                                 <Label fx:id="farmBrickPrice" styleClass="buildingCost" text="Brick: 20"/>
