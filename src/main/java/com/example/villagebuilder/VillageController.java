@@ -89,7 +89,6 @@ public class VillageController {
             case "siteSix" -> System.out.println(6);
             case "siteSeven" -> System.out.println(7);
         }
-
     }
 
 
