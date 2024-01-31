@@ -1,10 +1,14 @@
 .buildingIconHolder {
-    -fx-background-color: lightGrey;
     -fx-pref-height: 100;
     -fx-pref-width: 80;
     -fx-border-style: solid;
     -fx-border-width: 2;
     -fx-border-color: black;
+}
+
+.buildingMenuPane{
+    -fx-background-radius: 10.0;
+    -fx-background-color: lightGrey;
 }
 
 .buildingCost{
