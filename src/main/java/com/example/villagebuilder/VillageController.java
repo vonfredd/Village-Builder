@@ -17,6 +17,12 @@ import java.util.List;
 
 public class VillageController {
     @FXML
+    private Label farmFoodPrice;
+    @FXML
+    private Label farmBrickPrice;
+    @FXML
+    private Label farmLogsPrice;
+    @FXML
     private Circle siteOne;
     @FXML
     private Circle siteTwo;
@@ -61,6 +67,8 @@ public class VillageController {
         brickLabel.textProperty().bind(resourceProduction.brickAmountProperty().asString());
         lumberLabel.textProperty().bind(resourceProduction.lumberAmountProperty().asString());
         wheatLabel.textProperty().bind(resourceProduction.wheatAmountProperty().asString());
+
+        
     }
 
     private void startingTheTimeline() {
@@ -90,6 +98,5 @@ public class VillageController {
             case "siteSeven" -> System.out.println(7);
         }
     }
-
 
 }

@@ -17,8 +17,11 @@ public class VillageModel {
             case "FARM" -> buildings.add(builder.constructFarm());
             case "LUMBERJACK" -> buildings.add(builder.constructLumberjack());
             case "MASONRY" -> buildings.add(builder.constructMasonry());
+            default -> throw new RuntimeException("Cannot build that type.");
         }
+
     }
+
 
     public void callForProduction(ResourceProduction resourceProduction) {
         resourceProduction.buildingResourceProduction(buildings);
