@@ -5,6 +5,7 @@ public class FarmFactory implements BuildingFactory{
     public Building createBuilding(int level) {
         Farm farm = new Farm();
         farm.setLevel(level);
+        farm.setCost(level);
         return farm;
     }
 }

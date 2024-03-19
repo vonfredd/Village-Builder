@@ -9,8 +9,12 @@ import java.util.List;
 public class VillageModel {
 
     Builder builder = new Builder();
-
+    ResourceProduction resourceProduction;
     private final List<Building> buildings = FXCollections.observableArrayList();
+
+    public VillageModel(ResourceProduction resourceProduction) {
+        this.resourceProduction = resourceProduction;
+    }
 
     public void constructBuilding(String type) {
         switch (type) {
@@ -22,5 +26,18 @@ public class VillageModel {
 
     public void callForProduction(ResourceProduction resourceProduction) {
         resourceProduction.buildingResourceProduction(buildings);
+    }
+
+
+    public boolean checkPrice(Building building, Farm farm) {
+        if (resourceProduction.getLumberAmount() >= farm.getLumberPrice() && resourceProduction.getWheatAmount() >= farm.getWheatPrice() && resourceProduction.getBrickAmount() >= farm.getBricksPrice())
+            return true;
+        return false;
+    }
+
+    public void removePriceFromStockpile(Farm farm) {
+        resourceProduction.setBrickAmount(resourceProduction.getBrickAmount() - farm.getBricksPrice());
+        resourceProduction.setWheatAmount(resourceProduction.getWheatAmount() - farm.getWheatPrice());
+        resourceProduction.setLumberAmount(resourceProduction.getLumberAmount() - farm.getLumberPrice());
     }
 }

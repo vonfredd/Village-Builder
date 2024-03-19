@@ -25,11 +25,17 @@ public class ResourceProduction {
                     switch (e.getType()) {
                         case "FARM" -> setWheatAmount(getWheatAmount() + e.produceResource() + 1);
                         case "LUMBERJACK" -> setLumberAmount(getLumberAmount() + e.produceResource() + 1);
-                        case "MASONRY" -> setBrickAmount(getBrickAmount() + getBrickAmount() + 1);
+                        case "MASONRY" -> setBrickAmount(getBrickAmount() + e.produceResource() + 1);
                         default -> baseProduction();
                     }
                 }
         );
+    }
+
+    public void startingMaterial(){
+        setLumberAmount(100);
+        setBrickAmount(100);
+        setWheatAmount(100);
     }
 
     public int getLumberAmount() {
