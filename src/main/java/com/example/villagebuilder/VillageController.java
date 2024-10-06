@@ -1,12 +1,12 @@
 package com.example.villagebuilder;
 
 import com.example.villagebuilder.buildings.*;
+import com.example.villagebuilder.buildings.model.BuildingModel;
 import com.example.villagebuilder.production.ResourceProduction;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.beans.binding.Bindings;
-import javafx.beans.property.SimpleIntegerProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -26,8 +26,6 @@ public class VillageController {
     public Label farmFoodPriceLabel;
     @FXML
     public Label farmBrickPriceLabel;
-    @FXML
-    private Pane farmHouse;
     @FXML
     private Pane buildMenu;
     @FXML
@@ -66,46 +64,24 @@ public class VillageController {
     private Label wheatLabel;
     private ResourceProduction resourceProduction;
     private VillageModel model;
-    private List<Circle> constructionSites;
+    private BuildingModel buildingModel;
     private List<ImageView> constructionSiteImages;
-    private List<BuiltObject> constructedBuildings;
-    private Farm farm;
-
     private Circle circle;
 
-    private Builder builder;
-
     public void initialize() {
-        builder = new Builder();
-        constructedBuildings = new ArrayList<>();
         buildMenu.setVisible(false);
         resourceProduction = new ResourceProduction();
+        buildingModel = new BuildingModel(resourceProduction);
         model = new VillageModel(resourceProduction);
         resourceProduction.startingMaterial();
-        farm = new Farm();
-        farm.setCost(1);
         startingTheTimeline();
-        constructionSites = Arrays.asList(siteOne, siteTwo, siteThree, siteFour, siteFive, siteSix, siteSeven);
-        constructionSiteImages = Arrays.asList(siteOneImage, siteTwoImage, siteThreeImage, siteFourImage, siteFiveImage, siteSixImage, siteSevenImage);
+        constructionSiteImages = List.of(siteOneImage, siteTwoImage, siteThreeImage, siteFourImage, siteFiveImage, siteSixImage, siteSevenImage);
         brickLabel.textProperty().bind(resourceProduction.brickAmountProperty().asString());
         lumberLabel.textProperty().bind(resourceProduction.lumberAmountProperty().asString());
         wheatLabel.textProperty().bind(resourceProduction.wheatAmountProperty().asString());
-        farmLogsPriceLabel.textProperty().bind(Bindings.concat("Lumber: " + priceOfFarm().lumberPriceProperty().get()));
-        farmFoodPriceLabel.textProperty().bind(Bindings.concat("Food: " + priceOfFarm().wheatPriceProperty().get()));
-        farmBrickPriceLabel.textProperty().bind(Bindings.concat("Bricks: " + priceOfFarm().bricksPriceProperty().get()));
-
-    }
-
-    private Farm priceOfFarm() {
-        List<Farm> farms = constructedBuildings.stream()
-                .filter(builtObject -> builtObject.getBuilding() instanceof Farm)
-                .map(builtObject -> (Farm) builtObject.getBuilding())
-                .toList();
-        if (farms.isEmpty())
-            return farm;
-        return farms.stream()
-                .max(Comparator.comparingInt(Farm::getLevel)).get();
-
+        farmLogsPriceLabel.textProperty().bind(Bindings.concat("Lumber: " + buildingModel.priceOfFarm().lumberPriceProperty().get()));
+        farmFoodPriceLabel.textProperty().bind(Bindings.concat("Food: " + buildingModel.priceOfFarm().wheatPriceProperty().get()));
+        farmBrickPriceLabel.textProperty().bind(Bindings.concat("Bricks: " + buildingModel.priceOfFarm().bricksPriceProperty().get()));
     }
 
     private void startingTheTimeline() {
@@ -116,12 +92,11 @@ public class VillageController {
         timeline.play();
 
         Timeline timelineProduce = new Timeline(
-                new KeyFrame(Duration.seconds(1), event -> model.callForProduction(resourceProduction))
+                new KeyFrame(Duration.seconds(1), event -> buildingModel.callForProduction())
         );
         timelineProduce.setCycleCount(Animation.INDEFINITE);
         timelineProduce.play();
     }
-
 
     public void constructionSite(MouseEvent mouseEvent) {
         buildMenu.setVisible(!buildMenu.isVisible());
@@ -129,23 +104,23 @@ public class VillageController {
     }
 
     public void buildOnSite(MouseEvent mouseEvent) {
-        Pane pane = (Pane) mouseEvent.getSource();
-        Optional<Building> optional = typeOfBuilding(pane.getId());
-        if (model.checkPrice(optional.get(), priceOfFarm()))
-            model.removePriceFromStockpile(priceOfFarm());
-        else
-            return;
-        var imageViewList = constructionSiteImages.stream().filter(e -> e.getId().equals(circle.getId() + "Image")).toList();
-        ImageView imageView = imageViewList.getFirst();
-        setTheImage(pane, imageView);
-        buildMenu.setVisible(!buildMenu.isVisible());
-        constructedBuildings.add(new BuiltObject<>(optional.get(), circle, imageView));
+        Pane pane = (Pane) mouseEvent.getSource(); // The clicked pane from buildmenu ..ex Farmhouse icon
+        try {
+            Building building = buildingModel.buildOnSite(pane.getId()); // new
+            var imageViewList = constructionSiteImages.stream().filter(e -> e.getId().equals(circle.getId() + "Image")).toList(); // Gets the circle (buildingsite) from the list of buildingsites
+            ImageView imageView = imageViewList.getFirst(); // Get the imageview
+            setTheImage(pane, imageView); // set the image of the imageview to the proper icon based on paneId from buildingsmenu
+            buildMenu.setVisible(!buildMenu.isVisible());
+            buildingModel.addToConstructed(building, circle, imageView);
+        } catch (RuntimeException e) {
+            System.out.println(e);
+        }
     }
 
     private void setTheImage(Pane pane, ImageView imageView) {
         URL resourceUrl = getClass().getResource("/com/example/villagebuilder/images/" + pane.getId() + ".png");
         if (resourceUrl == null)
-            throw new NullPointerException("Not valid path");
+            throw new NullPointerException("Not a valid path");
         Image image = new Image(resourceUrl.toString());
         imageView.setTranslateX(circle.getTranslateX());
         imageView.setTranslateY(circle.getTranslateY());
@@ -153,14 +128,4 @@ public class VillageController {
         imageView.setVisible(true);
     }
 
-    private Optional<Building> typeOfBuilding(String id) {
-        if (id.equals("farmHouse")) {
-            return Optional.of(builder.constructFarm());
-        }
-        throw new RuntimeException("Nope");
-    }
-
-    public List<Building> getConstructedBuildings() {
-        return List.copyOf(constructedBuildings.stream().map(BuiltObject::getBuilding).toList());
-    }
 }
