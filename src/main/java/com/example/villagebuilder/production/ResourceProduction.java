@@ -4,6 +4,7 @@ import com.example.villagebuilder.buildings.Building;
 import javafx.beans.property.SimpleIntegerProperty;
 
 import java.util.List;
+import java.util.Set;
 
 public class ResourceProduction {
 
@@ -12,27 +13,30 @@ public class ResourceProduction {
     private final SimpleIntegerProperty brickAmount = new SimpleIntegerProperty();
     private final SimpleIntegerProperty wheatAmount = new SimpleIntegerProperty();
 
-    public void baseProduction() {
-        setLumberAmount(getLumberAmount() + 1);
-        setBrickAmount(getBrickAmount() + 1);
-        setWheatAmount(getWheatAmount() + 1);
+    public void baseProduction(Set<String> buildingTypes) {
+        if (!buildingTypes.contains("LUMBERJACK"))
+            setLumberAmount(getLumberAmount() + 1);
+        if (!buildingTypes.contains("MASONRY"))
+            setBrickAmount(getBrickAmount() + 1);
+        if (!buildingTypes.contains("FARM"))
+            setWheatAmount(getWheatAmount() + 1);
     }
 
-    public void buildingResourceProduction(List<Building> buildingList) {
-        if (buildingList.isEmpty())
-            baseProduction();
-        buildingList.forEach((e) -> {
-                    switch (e.getType()) {
-                        case "FARM" -> setWheatAmount(getWheatAmount() + e.produceResource() + 1);
-                        case "LUMBERJACK" -> setLumberAmount(getLumberAmount() + e.produceResource() + 1);
-                        case "MASONRY" -> setBrickAmount(getBrickAmount() + e.produceResource() + 1);
-                        default -> baseProduction();
+    public void buildingResourceProduction(Set<String> constructedBuildingsSet, List<Building> buildingList) {
+        if (!buildingList.isEmpty())
+            buildingList.forEach(e -> {
+                        switch (e.getType()) {
+                            case "FARM" -> setWheatAmount(getWheatAmount() + e.produceResource() + 1);
+                            case "LUMBERJACK" -> setLumberAmount(getLumberAmount() + e.produceResource() + 1);
+                            case "MASONRY" -> setBrickAmount(getBrickAmount() + e.produceResource() + 1);
+                            default -> baseProduction(constructedBuildingsSet);
+                        }
                     }
-                }
-        );
+            );
+        baseProduction(constructedBuildingsSet);
     }
 
-    public void startingMaterial(){
+    public void startingMaterial() {
         setLumberAmount(100);
         setBrickAmount(100);
         setWheatAmount(100);
