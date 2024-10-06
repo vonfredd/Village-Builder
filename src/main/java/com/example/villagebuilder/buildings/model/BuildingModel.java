@@ -16,6 +16,7 @@ public class BuildingModel {
     private final List<BuiltObject> constructedBuildings;
     private final Farm farm;
     private final ResourceProduction resourceProduction;
+    private Farm cachedHighLevelFarm = null;
 
     public BuildingModel(ResourceProduction resourceProduction) {
         buildModel = new BuildModel();
@@ -25,46 +26,34 @@ public class BuildingModel {
         this.resourceProduction = resourceProduction;
     }
 
-    public Farm priceOfFarm() {
-        List<Farm> farms = constructedBuildings.stream()
-                .map(builtObject -> (Farm) builtObject.getBuilding())
+    public Building priceOfBuilding(Building checkPrice) {
+        List<Building> buildings = constructedBuildings.stream()
+                .map(BuiltObject::getBuilding)
+                .filter(building -> building.getType().equals(checkPrice.getType()))
                 .toList();
-        if (farms.isEmpty())
+        if (buildings.isEmpty())
             return farm;
-        return farms.stream()
-                .max(Comparator.comparingInt(Farm::getLevel)).get();
+
+        return buildings.stream()
+                .max(Comparator.comparingInt(Building::getLevel)).get();
     }
+
 
     public List<Building> getConstructedBuildings() {
         return List.copyOf(constructedBuildings.stream().map(BuiltObject::getBuilding).toList());
+
     }
 
-    public Set<String> getConstructedBuildingsSet(){
+    public Set<String> getConstructedBuildingsSet() {
         return getConstructedBuildings().stream().map(Building::getType).collect(Collectors.toSet());
     }
 
-    public Building buildOnSite(String id){
+    public Building buildOnSite(String id) {
         Optional<Building> optional = typeOfBuilding(id);  // The Id of the buildmenu icon .. ex 'farmHouse'
-       if (!isAffordable(priceOfFarm())){
-           throw new RuntimeException("Not affordable " + optional.get());
-       }
-       return optional.get();
-    }
-
-    public boolean isAffordable(Farm farm) {
-        if (resourceProduction.getLumberAmount() >= farm.getLumberPrice()
-                && resourceProduction.getWheatAmount() >= farm.getWheatPrice()
-                && resourceProduction.getBrickAmount() >= farm.getBricksPrice()) {
-            removePriceFromStockpile(farm);
-            return true;
+        if (!isAffordable(priceOfBuilding(optional.get()))) {
+            throw new RuntimeException("Not affordable " + optional.get());
         }
-        return false;
-    }
-
-    public void removePriceFromStockpile(Farm farm) {
-        resourceProduction.setBrickAmount(resourceProduction.getBrickAmount() - farm.getBricksPrice());
-        resourceProduction.setWheatAmount(resourceProduction.getWheatAmount() - farm.getWheatPrice());
-        resourceProduction.setLumberAmount(resourceProduction.getLumberAmount() - farm.getLumberPrice());
+        return optional.get();
     }
 
     //If pane contains image or building, an optional building is returned to caller.
@@ -75,11 +64,42 @@ public class BuildingModel {
         throw new RuntimeException("Nope");
     }
 
-    public void addToConstructed(Building building, Circle circle, ImageView imageView) {
-        constructedBuildings.add(new BuiltObject<>(building, circle, imageView));// ..ex 'farmHouse' , CircleId and what image in imageview
+    public boolean isAffordable(Building building) {
+        if (resourceProduction.getLumberAmount() >= building.getLumberPrice()
+                && resourceProduction.getWheatAmount() >= building.getWheatPrice()
+                && resourceProduction.getBrickAmount() >= building.getBricksPrice()) {
+            removePriceFromStockpile(building);
+            return true;
+        }
+        return false;
     }
 
-    public void callForProduction(){
+    public void removePriceFromStockpile(Building building) {
+        resourceProduction.setBrickAmount(resourceProduction.getBrickAmount() - building.getBricksPrice());
+        resourceProduction.setWheatAmount(resourceProduction.getWheatAmount() - building.getWheatPrice());
+        resourceProduction.setLumberAmount(resourceProduction.getLumberAmount() - building.getLumberPrice());
+    }
+
+    public void addToConstructed(Building building, Circle circle, ImageView imageView) {
+        constructedBuildings.add(new BuiltObject<>(building, circle, imageView));// ..ex 'farmHouse' , CircleId and what image in imageview
+        if (building instanceof Farm) {
+            cachedHighLevelFarm = null;
+        }
+    }
+
+    public void callForProduction() {
         resourceProduction.buildingResourceProduction(getConstructedBuildingsSet(), constructedBuildings.stream().map(BuiltObject::getBuilding).toList());
+    }
+
+    public Farm getFarm() {
+        if (cachedHighLevelFarm == null) {
+            cachedHighLevelFarm = constructedBuildings.stream()
+                    .map(BuiltObject::getBuilding)
+                    .filter(b -> b instanceof Farm)
+                    .map(b -> (Farm) b)
+                    .max(Comparator.comparingInt(Building::getLevel))
+                    .orElse(farm);
+        }
+        return cachedHighLevelFarm;
     }
 }
