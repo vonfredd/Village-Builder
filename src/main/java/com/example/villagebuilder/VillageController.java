@@ -79,9 +79,9 @@ public class VillageController {
         brickLabel.textProperty().bind(resourceProduction.brickAmountProperty().asString());
         lumberLabel.textProperty().bind(resourceProduction.lumberAmountProperty().asString());
         wheatLabel.textProperty().bind(resourceProduction.wheatAmountProperty().asString());
-        farmLogsPriceLabel.textProperty().bind(Bindings.concat("Lumber: " + buildingModel.priceOfFarm().lumberPriceProperty().get()));
-        farmFoodPriceLabel.textProperty().bind(Bindings.concat("Food: " + buildingModel.priceOfFarm().wheatPriceProperty().get()));
-        farmBrickPriceLabel.textProperty().bind(Bindings.concat("Bricks: " + buildingModel.priceOfFarm().bricksPriceProperty().get()));
+        farmLogsPriceLabel.textProperty().bind(Bindings.concat("Lumber: " + buildingModel.getFarm().lumberPriceProperty().get()));
+        farmFoodPriceLabel.textProperty().bind(Bindings.concat("Food: " + buildingModel.getFarm().wheatPriceProperty().get()));
+        farmBrickPriceLabel.textProperty().bind(Bindings.concat("Bricks: " + buildingModel.getFarm().bricksPriceProperty().get()));
     }
 
     private void startingTheTimeline() {
