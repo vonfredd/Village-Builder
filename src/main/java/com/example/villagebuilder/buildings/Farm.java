@@ -28,11 +28,12 @@ public class Farm implements EconomicBuilding {
     public void setLevel(int level) {
         this.level = level;
     }
-
+    @Override
     public int getLevel() {
         return level;
     }
 
+    @Override
     public int getWheatPrice() {
         return wheatPrice.get();
     }
@@ -40,7 +41,7 @@ public class Farm implements EconomicBuilding {
     public SimpleIntegerProperty wheatPriceProperty() {
         return wheatPrice;
     }
-
+    @Override
     public int getLumberPrice() {
         return lumberPrice.get();
     }
@@ -49,6 +50,7 @@ public class Farm implements EconomicBuilding {
         return lumberPrice;
     }
 
+    @Override
     public int getBricksPrice() {
         return bricksPrice.get();
     }

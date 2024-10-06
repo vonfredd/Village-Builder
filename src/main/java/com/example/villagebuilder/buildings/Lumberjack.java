@@ -23,6 +23,21 @@ public class Lumberjack implements EconomicBuilding {
         return type;
     }
 
+    @Override
+    public int getWheatPrice() {
+        return 0;
+    }
+
+    @Override
+    public int getBricksPrice() {
+        return 0;
+    }
+
+    @Override
+    public int getLumberPrice() {
+        return 0;
+    }
+
     public int getLevel() {
         return level;
     }
