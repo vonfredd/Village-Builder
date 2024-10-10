@@ -3,41 +3,54 @@ package com.example.villagebuilder.buildings.model;
 import com.example.villagebuilder.buildings.Building;
 import com.example.villagebuilder.buildings.BuiltObject;
 import com.example.villagebuilder.buildings.Farm;
+import com.example.villagebuilder.buildings.Lumberjack;
 import com.example.villagebuilder.production.ResourceProduction;
 import javafx.scene.image.ImageView;
 import javafx.scene.shape.Circle;
 
 import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 public class BuildingModel {
+
+    private static final Logger logger = Logger.getLogger( BuildingModel.class.getName() );
 
     private final BuildModel buildModel;
     private final List<BuiltObject> constructedBuildings;
     private final Farm farm;
     private final ResourceProduction resourceProduction;
     private Farm cachedHighLevelFarm = null;
+    private Lumberjack cachedHighLevelLumberjack = null;
+    private final Lumberjack lumberjack;
 
     public BuildingModel(ResourceProduction resourceProduction) {
+        lumberjack = new Lumberjack();
         buildModel = new BuildModel();
         farm = new Farm();
         constructedBuildings = new ArrayList<>();
         farm.setCost(1);
+        lumberjack.setCost(1);
         this.resourceProduction = resourceProduction;
     }
 
     public Building priceOfBuilding(Building checkPrice) {
+        var theType = checkPrice.getType();
+        System.out.println(theType);
         List<Building> buildings = constructedBuildings.stream()
                 .map(BuiltObject::getBuilding)
                 .filter(building -> building.getType().equals(checkPrice.getType()))
                 .toList();
         if (buildings.isEmpty())
-            return farm;
+            switch (theType) {
+                case "FARM": return farm;
+                case "LUMBERJACK": return lumberjack;
+            }
 
         return buildings.stream()
                 .max(Comparator.comparingInt(Building::getLevel)).get();
     }
-
 
     public List<Building> getConstructedBuildings() {
         return List.copyOf(constructedBuildings.stream().map(BuiltObject::getBuilding).toList());
@@ -50,6 +63,7 @@ public class BuildingModel {
 
     public Building buildOnSite(String id) {
         Optional<Building> optional = typeOfBuilding(id);  // The Id of the buildmenu icon .. ex 'farmHouse'
+       logger.log(Level.INFO, optional.get().toString());
         if (!isAffordable(priceOfBuilding(optional.get()))) {
             throw new RuntimeException("Not affordable " + optional.get());
         }
@@ -60,11 +74,14 @@ public class BuildingModel {
     private Optional<Building> typeOfBuilding(String id) {
         if (id.equals("farmHouse")) {
             return Optional.of(buildModel.constructFarm());// Returns an instance of the class , which name is alike the id .. ex farmHouse = an object of type 'Farm'
+        } else if (id.equals("lumberjack")) {
+            return Optional.of(buildModel.constructLumberjack());
         }
         throw new RuntimeException("Nope");
     }
 
     public boolean isAffordable(Building building) {
+        logger.log(Level.INFO, "IsAffordable");
         if (resourceProduction.getLumberAmount() >= building.getLumberPrice()
                 && resourceProduction.getWheatAmount() >= building.getWheatPrice()
                 && resourceProduction.getBrickAmount() >= building.getBricksPrice()) {
@@ -84,6 +101,8 @@ public class BuildingModel {
         constructedBuildings.add(new BuiltObject<>(building, circle, imageView));// ..ex 'farmHouse' , CircleId and what image in imageview
         if (building instanceof Farm) {
             cachedHighLevelFarm = null;
+        } else if (building instanceof Lumberjack) {
+            cachedHighLevelLumberjack = null;
         }
     }
 
@@ -101,5 +120,18 @@ public class BuildingModel {
                     .orElse(farm);
         }
         return cachedHighLevelFarm;
+    }
+
+    public Lumberjack getLumberjack() {
+        if (cachedHighLevelLumberjack == null) {
+            cachedHighLevelLumberjack = constructedBuildings.stream()
+                    .map(BuiltObject::getBuilding)
+                    .filter(b -> b instanceof Lumberjack)
+                    .map(b -> (Lumberjack) b)
+                    .max(Comparator.comparingInt(Building::getLevel))
+                    .orElse(lumberjack);
+        }
+        logger.log(Level.INFO, "Lumberjack " + cachedHighLevelLumberjack.getLevel());
+        return cachedHighLevelLumberjack;
     }
 }

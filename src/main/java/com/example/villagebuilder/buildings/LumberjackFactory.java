@@ -5,6 +5,7 @@ public class LumberjackFactory implements BuildingFactory{
     public Building createBuilding(int level) {
         Lumberjack lumberjack = new Lumberjack();
         lumberjack.setLevel(level);
+        lumberjack.setCost(level);
         return lumberjack;
     }
 }

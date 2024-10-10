@@ -27,6 +27,12 @@ public class VillageController {
     @FXML
     public Label farmBrickPriceLabel;
     @FXML
+    public Label lumberjackBrickPriceLabel;
+    @FXML
+    public Label lumberjackFoodPriceLabel;
+    @FXML
+    public Label lumberjackLogsPriceLabel;
+    @FXML
     private Pane buildMenu;
     @FXML
     private Circle siteOne;
@@ -82,6 +88,11 @@ public class VillageController {
         farmLogsPriceLabel.textProperty().bind(Bindings.concat("Lumber: " + buildingModel.getFarm().lumberPriceProperty().get()));
         farmFoodPriceLabel.textProperty().bind(Bindings.concat("Food: " + buildingModel.getFarm().wheatPriceProperty().get()));
         farmBrickPriceLabel.textProperty().bind(Bindings.concat("Bricks: " + buildingModel.getFarm().bricksPriceProperty().get()));
+
+        lumberjackLogsPriceLabel.textProperty().bind(Bindings.concat("Lumber: " + buildingModel.getLumberjack().lumberPriceProperty().get()));
+        lumberjackFoodPriceLabel.textProperty().bind(Bindings.concat("Food: " + buildingModel.getLumberjack().wheatPriceProperty().get()));
+        lumberjackBrickPriceLabel.textProperty().bind(Bindings.concat("Bricks: " + buildingModel.getLumberjack().bricksPriceProperty().get()));
+
     }
 
     private void startingTheTimeline() {

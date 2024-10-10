@@ -1,16 +1,17 @@
 package com.example.villagebuilder.buildings;
 
+import javafx.beans.property.SimpleIntegerProperty;
+
 public class Lumberjack implements EconomicBuilding {
     private int level;
-    private String type;
+    private final String type;
+    private final SimpleIntegerProperty wheatPrice = new SimpleIntegerProperty();
+    private final SimpleIntegerProperty lumberPrice = new SimpleIntegerProperty();
+    private final SimpleIntegerProperty bricksPrice = new SimpleIntegerProperty();
+
 
     public Lumberjack() {
         this.type = "LUMBERJACK";
-    }
-
-    @Override
-    public void setLevel(int level) {
-        this.level = level;
     }
 
     @Override
@@ -24,22 +25,43 @@ public class Lumberjack implements EconomicBuilding {
     }
 
     @Override
-    public int getWheatPrice() {
-        return 0;
+    public void setLevel(int level) {
+        this.level = level;
     }
-
     @Override
-    public int getBricksPrice() {
-        return 0;
-    }
-
-    @Override
-    public int getLumberPrice() {
-        return 0;
-    }
-
     public int getLevel() {
         return level;
     }
 
+    @Override
+    public int getWheatPrice() {
+        return wheatPrice.get();
+    }
+
+    public SimpleIntegerProperty wheatPriceProperty() {
+        return wheatPrice;
+    }
+    @Override
+    public int getLumberPrice() {
+        return lumberPrice.get();
+    }
+
+    public SimpleIntegerProperty lumberPriceProperty() {
+        return lumberPrice;
+    }
+
+    @Override
+    public int getBricksPrice() {
+        return bricksPrice.get();
+    }
+
+    public SimpleIntegerProperty bricksPriceProperty() {
+        return bricksPrice;
+    }
+
+    public void setCost(int level) {
+        wheatPrice.set(level * 50);
+        lumberPrice.set(level * 100);
+        bricksPrice.set(level * 50);
+    }
 }

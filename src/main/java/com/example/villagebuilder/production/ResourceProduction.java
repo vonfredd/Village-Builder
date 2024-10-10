@@ -37,9 +37,9 @@ public class ResourceProduction {
     }
 
     public void startingMaterial() {
-        setLumberAmount(100);
-        setBrickAmount(100);
-        setWheatAmount(100);
+        setLumberAmount(1000);
+        setBrickAmount(1000);
+        setWheatAmount(1000);
     }
 
     public int getLumberAmount() {
